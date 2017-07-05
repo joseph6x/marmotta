@@ -19,7 +19,7 @@ CREATE TABLE nodes (
   svalue    longtext   NOT NULL,
   dvalue    double precision,
   ivalue    bigint,
-  tvalue    datetime   DEFAULT NULL,
+  tvalue    timestamp,
   tzoffset  INT,
   bvalue    boolean,
   ltype     bigint     REFERENCES nodes(id),
@@ -38,7 +38,7 @@ CREATE TABLE triples (
   inferred  boolean    DEFAULT false,
   deleted   boolean    DEFAULT false,
   createdAt timestamp  NOT NULL DEFAULT now(),
-  deletedAt timestamp,
+  deletedAt timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(id)
 ) CHARACTER SET utf8 COLLATE utf8_bin  ENGINE=InnoDB;
 
@@ -77,7 +77,7 @@ CREATE INDEX idx_triples_p ON triples(predicate);
 CREATE INDEX idx_triples_spo ON triples(subject,predicate,object);
 CREATE INDEX idx_triples_cspo ON triples(context,subject,predicate,object);
 
-CREATE INDEX idx_namespaces_uri ON namespaces(uri);
+CREATE INDEX idx_namespaces_uri ON namespaces(uri(256));
 CREATE INDEX idx_namespaces_prefix ON namespaces(prefix);
 
 -- insert initial metadata
