@@ -300,7 +300,7 @@ public class KiWiEvaluationStrategy extends EvaluationStrategyImpl{
                                         break;
                                     case DECIMAL:
                                         if (row.getObject(sv.getName()) != null) {
-                                            svalue = row.getBigDecimal(sv.getName()).toString();
+                                            svalue = row.getBigDecimal(sv.getName()).stripTrailingZeros().toString();
                                             URI type = XSD.Decimal;
                                             try {
                                                 long typeId = row.getLong(sv.getName() + "_TYPE");
