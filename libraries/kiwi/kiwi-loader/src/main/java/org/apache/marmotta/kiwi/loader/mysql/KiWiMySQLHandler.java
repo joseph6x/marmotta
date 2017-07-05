@@ -17,7 +17,7 @@
 
 package org.apache.marmotta.kiwi.loader.mysql;
 
-import com.mysql.jdbc.Statement;
+import com.mysql.cj.api.jdbc.Statement;
 import org.apache.marmotta.kiwi.loader.KiWiLoaderConfiguration;
 import org.apache.marmotta.kiwi.loader.generic.KiWiBatchHandler;
 import org.apache.marmotta.kiwi.sail.KiWiStore;
@@ -47,7 +47,7 @@ public class KiWiMySQLHandler extends KiWiBatchHandler implements RDFHandler {
      */
     @Override
     protected void createIndexes() throws SQLException {
-        Statement statement = (com.mysql.jdbc.Statement)connection.getJDBCConnection().createStatement();
+        Statement statement = (com.mysql.cj.api.jdbc.Statement)connection.getJDBCConnection().createStatement();
         statement.execute("ALTER TABLE nodes ENABLE KEYS");
         statement.execute("ALTER TABLE triples ENABLE KEYS");
         statement.execute("SET UNIQUE_CHECKS=1; ");
@@ -62,7 +62,7 @@ public class KiWiMySQLHandler extends KiWiBatchHandler implements RDFHandler {
     protected void flushBacklogInternal() throws SQLException {
         try {
             // load node backlog
-            Statement statement = (com.mysql.jdbc.Statement)connection.getJDBCConnection().createStatement();
+            Statement statement = (com.mysql.cj.api.jdbc.Statement)connection.getJDBCConnection().createStatement();
             statement.setLocalInfileInputStream(MySQLLoadUtil.flushNodes(nodeBacklog));
             statement.execute(
                     "LOAD DATA LOCAL INFILE 'nodes.csv' " +
@@ -99,7 +99,7 @@ public class KiWiMySQLHandler extends KiWiBatchHandler implements RDFHandler {
      */
     @Override
     protected void dropIndexes() throws SQLException {
-        Statement statement = (com.mysql.jdbc.Statement)connection.getJDBCConnection().createStatement();
+        Statement statement = (com.mysql.cj.api.jdbc.Statement)connection.getJDBCConnection().createStatement();
         statement.execute("SET UNIQUE_CHECKS=0; ");
         statement.execute("ALTER TABLE nodes DISABLE KEYS");
         statement.execute("ALTER TABLE triples DISABLE KEYS");
