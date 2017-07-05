@@ -49,7 +49,7 @@
                             <postgresql.pass>kiwi</postgresql.pass>
 
                             <!-- enable or pass on command line for testing local MySQL -->
-                            <mysql.url>jdbc:mysql://localhost:3306/kiwitest?socketTimeout=2000</mysql.url>
+                            <mysql.url>jdbc:mysql://localhost:3306/kiwitest?socketTimeout=2000&amp;useSSL=false</mysql.url>
                             <mysql.user>kiwi</mysql.user>
                             <mysql.pass>kiwi</mysql.pass>
                         </systemPropertyVariables>
