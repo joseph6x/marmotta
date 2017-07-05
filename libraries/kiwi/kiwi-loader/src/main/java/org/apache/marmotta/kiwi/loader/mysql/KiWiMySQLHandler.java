@@ -71,7 +71,7 @@ public class KiWiMySQLHandler extends KiWiBatchHandler implements RDFHandler {
                             "OPTIONALLY ENCLOSED BY '\"' " +
                             "ESCAPED BY '\"' " +
                             "LINES TERMINATED BY '\\r\\n' " +
-                            "(id,ntype,svalue,dvalue,ivalue,tvalue,bvalue,ltype,lang,createdAt)");
+                            "(id,ntype,svalue,dvalue,ivalue,tvalue,tzoffset,bvalue,ltype,lang,createdAt)");
 
 
             statement.setLocalInfileInputStream(MySQLLoadUtil.flushTriples(tripleBacklog));

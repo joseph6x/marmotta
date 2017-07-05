@@ -187,7 +187,7 @@ public class MySQLLoadUtil {
         a[6] = tzoffset;
         a[7] = bool;
         a[8] = dtype;
-        a[9] = lang;
+        a[9] = lang != null ? lang.getLanguage() : "";
         a[10] = created;
     }
 
